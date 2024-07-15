@@ -23,8 +23,7 @@ def get_interface_line(mask):
 
 
     interface_line = xx == h_coord
-    interface_line[:, :50, :] = False
-    interface_line[:, -50:, :] = False
+    
     if not is_batch:
         interface_line = interface_line.squeeze(0)
 

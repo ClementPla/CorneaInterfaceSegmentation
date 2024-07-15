@@ -2,7 +2,6 @@
 name = "cornea"
 version = "0.1.0"
 description = ""
-authors = ["ClementPla <clement.playout@polymtl.ca>"]
 readme = "README.md"
 dependencies = [
     "albumentations",
@@ -23,12 +22,18 @@ dependencies = [
     "jaxtyping",
     "kornia",
     "huggingface_hub"
-]
+]   
 
-[tool.poetry.dependencies]
-python = "^3.10"
+[project.optional-dependencies]
+dev = ["black", "ruff", "pre-commit"]
 
+notebook = ["ipykernel", "matplotlib"]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+select = ["E", "F", "I", "RUF", "TCH"]
+fixable = ["I", "RUF100", "TCH"]
+fix = true

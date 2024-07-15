@@ -1,12 +1,15 @@
 from torchseg import create_model
 from torchseg.losses import DiceLoss
 from cornea.data.datamodule import CorneaDatamodule
-from cornea.trainer_module import CorneaTrainerModule
+from cornea.models.trainer_module import CorneaTrainerModule
 from pytorch_lightning import Trainer
 from pytorch_lightning.loggers import WandbLogger
 from cornea.utils.callbacks import LogPredictionSamplesCallback
 import os
 from pytorch_lightning.callbacks import ModelCheckpoint
+from pytorch_lightning import seed_everything
+
+seed_everything(1234)
 
 
 def main():
@@ -15,11 +18,14 @@ def main():
         "num_classes": 1,
         "batch_size": 24,
         "img_size": (416, 1280),
+        "encoder": "resnet34",
     }
 
     root_folder = "/home/clement/Documents/data/Cornea/"
     project_name = "Cornea Interface Segmentation"
-    model = create_model(config["model"], classes=config["num_classes"])
+    model = create_model(
+        config["model"], encoder_name=config["encoder"], classes=config["num_classes"]
+    )
 
     datamodule = CorneaDatamodule(
         root_folder=root_folder,

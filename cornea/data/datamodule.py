@@ -60,6 +60,7 @@ class CorneaDatamodule(LightningDataModule):
 
         all_patients = np.unique(unique_names)
         index = np.arange(len(all_patients))
+        np.random.seed(1234)
         np.random.shuffle(index)
         train = index[: int(0.8 * len(index))]
         val = index[int(0.8 * len(index)) :]

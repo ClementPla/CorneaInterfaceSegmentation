@@ -28,7 +28,7 @@ def main():
     )
     datamodule.prepare_data()
 
-    logger = WandbLogger(name=project_name, config=config)
+    logger = WandbLogger(project=project_name, config=config)
 
     if os.environ.get("LOCAL_RANK", None) is None:
         os.environ["WANDB_RUN_NAME"] = logger.experiment.name

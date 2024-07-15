@@ -60,8 +60,7 @@ class CorneaTrainerModule(LightningModule):
             on_step=False,
             sync_dist=True,
         )
-        logits = torch.sigmoid(logits)
-        print(logits.shape, mask.shape)
+        logits = torch.sigmoid(logits).squeeze(1)
         self.valid_metrics.update(logits, mask)
         return logits
 

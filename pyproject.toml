@@ -1,9 +1,29 @@
-[tool.poetry]
+[project]
 name = "cornea"
 version = "0.1.0"
 description = ""
 authors = ["ClementPla <clement.playout@polymtl.ca>"]
 readme = "README.md"
+dependencies = [
+    "albumentations",
+    "torch",
+    "torchvision",
+    "numpy",
+    "opencv-python-headless",
+    "pandas",
+    "matplotlib",
+    "scikit-learn",
+    "scipy",
+    "tqdm",
+    "pytorch-lightning",
+    "nntools @ git+https://github.com/ClementPla/NNTools@attrs_dataset",
+    "attrs",
+    "timm",
+    "wandb",
+    "jaxtyping",
+    "kornia",
+    "huggingface_hub"
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
